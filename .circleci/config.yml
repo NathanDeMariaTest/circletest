@@ -1,7 +1,7 @@
 version: 2.1 # Use version 2.1 to enable orb usage.
 
 orbs:
-  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
+  win: circleci/windows@2.4.0 # The Windows orb give you everything you need to start using the Windows executor.
 
 jobs:
   build: # name of your job
@@ -17,11 +17,11 @@ jobs:
           command: |
             pip install virtualenv
             virtualenv venv
-            . venv/bin/activate
+            venv\Scripts\activate.bat
             pip install -e pytest
       - run:
           name: Run Pytest
           command: |
-            . venv/bin/activate
-            pytest --cov=./
+            venv\Scripts\activate.bat
+            pytest --cov=.
             codecov
